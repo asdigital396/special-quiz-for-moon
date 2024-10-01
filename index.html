@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Quiz</title>
+    <style>
+        /* কিছু সাধারণ স্টাইলিং যোগ করছি */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .step {
+            display: none; /* ধাপগুলো প্রথমে লুকানো থাকবে */
+        }
+
+        .active {
+            display: block; /* সক্রিয় ধাপ প্রদর্শিত হবে */
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>তোমার জন্য বিশেষ কুইজ!</h1>
+    <div id="step1" class="step active"> <!-- প্রথম ধাপ -->
+        <h2>প্রশ্ন ১</h2>
+        <p>আমার প্রিয় রঙ কী?</p>
+        <button onclick="nextStep(1, 'blue')">নীল</button>
+        <button onclick="nextStep(1, 'green')">সবুজ</button>
+    </div>
