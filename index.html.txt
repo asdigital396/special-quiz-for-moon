@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Quiz</title>
+    <style>
+        /* কিছু সাধারণ স্টাইলিং যোগ করছি */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .step {
+            display: none; /* ধাপগুলো প্রথমে লুকানো থাকবে */
+        }
+
+        .active {
+            display: block; /* সক্রিয় ধাপ প্রদর্শিত হবে */
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>তোমার জন্য বিশেষ কুইজ!</h1>
+
+    <!-- প্রথম ধাপ -->
+    <div id="step1" class="step active">
+        <h2>প্রশ্ন ১</h2>
+        <p>আমার প্রিয় রঙ কী?</p>
+        <button onclick="nextStep(1, 'blue')">নীল</button>
+        <button onclick="nextStep(1, 'green')">সবুজ</button>
+    </div>
+
+    <!-- দ্বিতীয় ধাপ -->
+    <div id="step2" class="step">
+        <h2>প্রশ্ন ২</h2>
+        <p>তোমার প্রিয় খাবার কী?</p>
+        <button onclick="nextStep(2, 'pizza')">পিজ্জা</button>
+        <button onclick="nextStep(2, 'burger')">বার্গার</button>
+    </div>
+
+    <!-- শুভ জন্মদিন -->
+    <div id="birthdayWish" class="step">
+        <h2>শুভ জন্মদিন!</h2>
+        <p>সবগুলো উত্তর সঠিক! তুমি সত্যিই অসাধারণ!</p>
+    </div>
+
+    <!-- ভুল হলে -->
+    <div id="tryAgain" class="step">
+        <h2>আবার চেষ্টা করো!</h2>
+        <p>সব উত্তর ঠিক হয়নি। আবার চেষ্টা করো।</p>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+
+        function nextStep(stepNumber, answer) {
+            // সঠিক উত্তর চেক করা
+            if(stepNumber === 1 && answer === 'blue') {
+                correctAnswers++;
+            } else if (stepNumber === 2 && answer === 'pizza') {
+                correctAnswers++;
+            }
+
+            // আগের ধাপ হাইড করা
+            document.getElementById('step' + stepNumber).classList.remove('active');
+
+            // পরবর্তী ধাপ অ্যাক্টিভ করা
+            let nextStepElement = document.getElementById('step' + (stepNumber + 1));
+            if(nextStepElement) {
+                nextStepElement.classList.add('active');
+            } else {
+                // সব সঠিক হলে শুভেচ্ছা দেখানো, না হলে "try again"।
+                if (correctAnswers === 2) {
+                    document.getElementById('birthdayWish').classList.add('active');
+                } else {
+                    document.getElementById('tryAgain').classList.add('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
